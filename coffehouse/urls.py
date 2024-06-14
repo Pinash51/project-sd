@@ -19,6 +19,11 @@ from django.urls import path
 from coffehouse import views
 
 urlpatterns = [
-    path('', views.index),
     path('admin/', admin.site.urls),
+    path('', views.index, name='index'),
+    path('login/', views.user_login, name='login'),
+    path('register/', views.user_register, name='register'),
+    path('admin_login/', views.admin_login, name='admin_login'),
+    path('admin_register/', views.admin_register, name='admin_register'),
+    path('admin_logout/', views.admin_logout, name='admin_logout'),
 ]
