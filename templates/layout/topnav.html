@@ -1,29 +1,41 @@
 <nav class="navbar navbar-expand-lg bg-dark sticky-top border-bottom border-body p-3" data-bs-theme="dark">
   <div class="container-fluid d-flex">
-    <a class="navbar-brand me-auto fs-1" href="#"><h1 class="name">Coffee House</h1></a>
+    <a class="navbar-brand me-auto fs-1" href="{% url 'index' %}"><h1 class="name">Coffee House</h1></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="order.html">Menu</a>
+        {% comment %} <li class="nav-item">
+          <a class="nav-link" href="{% url 'menu' %}">Menu</a>
+        </li> {% endcomment %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="{% url 'menu' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Menu
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'menu' %}#p3">Coffee</a></li>
+              <li><a class="dropdown-item" href="{% url 'menu' %}#p4">Smoothie</a></li>
+              <li><a class="dropdown-item" href="{% url 'menu' %}#p6">Shake</a></li>
+              <li><a class="dropdown-item" href="{% url 'menu' %}#p5">Dessert</a></li>
+            </ul>
         </li>
+        
         {% if user.is_authenticated %}
           {% comment %} <li class="nav-item">
             <a class="nav-link" href="profile">Profile</a>
           </li> {% endcomment %}
           <li class="nav-item">
-            <a class="nav-link" href="admin_logout">Logout</a>
+            <a class="nav-link" href="{% url 'admin_logout' %}">Logout</a>
           </li>
         {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="login">Login</a>
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="register">Register</a>
+            <a class="nav-link" href="{% url 'register' %}">Register</a>
           </li>
         {% endif %}
       </ul>
